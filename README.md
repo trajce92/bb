@@ -4,6 +4,7 @@ Buildermind Buddies
 ## Installing
 
 * Step 1. Go in you www directory.
+
 * Step 2. Open cmd in current directory and run the following command
 ```
 git clone https://github.com/trajce92/bb
@@ -22,6 +23,12 @@ DB_USERNAME=root
 DB_PASSWORD=[whatever your password is]
 ```
 * Step 5. Create a mysql database in phpmyadmin (or whatever used) named 'builderbuddies'
+
+* Step 6. Run the migrations
+```
+php artisan migrate
+```
+
 * Step 6. Enter http://localhost/bb/public/ in browser and enjoy
 
 ### Prerequisites
