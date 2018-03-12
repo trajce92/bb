@@ -48,6 +48,9 @@
                                                      document.getElementById('logout-form').submit();">
                                         Logout
                                     </a>
+                                    <a href="{{url('/'. Auth::user()->id .'/profile')}}">
+                                        My Profile
+                                    </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
@@ -67,5 +70,10 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+    <!-- jQuery -->
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.js"
+      integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+      crossorigin="anonymous"></script>
 </body>
 </html>
