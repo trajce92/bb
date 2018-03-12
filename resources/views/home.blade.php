@@ -13,7 +13,7 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
+                    <a href="{{url('/'.Auth::user()->id.'/notes')}}">see notes</a>
                     You are logged in!
                 </div>
             </div>
