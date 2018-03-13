@@ -1,0 +1,36 @@
+/* style css */
+
+html, body {
+	margin: 0px;
+	padding: 0px;
+}
+
+/* login page start*/
+
+#left-column {
+	background: #3f3f3f; /* Old browsers */
+	background: -moz-radial-gradient(center, ellipse cover, #3f3f3f 1%, #000000 100%); /* FF3.6-15 */
+	background: -webkit-radial-gradient(center, ellipse cover, #3f3f3f 1%,#000000 100%); /* Chrome10-25,Safari5.1-6 */
+	background: radial-gradient(ellipse at center, #3f3f3f 1%,#000000 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3f3f3f', endColorstr='#000000',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+	background-position: center;
+}
+#logo-wrapper, #login-form {
+    display:-webkit-box;
+    display:-ms-flexbox;
+    display:flex;
+    -webkit-box-pack:center;
+        -ms-flex-pack:center;
+            justify-content:center;
+}
+#logo-wrapper img{
+	height: 250px;
+}
+
+#login-form input{
+	margin-bottom: 5%;
+	width: 100%;
+	border:1px solid rgba(255,255,255,.7);
+	background: rgba(255,255,255,.05);
+}
+/* login page end */
