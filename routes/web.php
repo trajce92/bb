@@ -21,3 +21,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('/{id}/notes', 'NotesController');
 Route::get('/{id}/profile', 'UserController@index');
 Route::post('/{id}/profile', 'UserController@editUser');
+Route::get('/gmail', function(){
+	return view('quickstart');
+});
