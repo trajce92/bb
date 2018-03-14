@@ -32,8 +32,35 @@ class User extends Authenticatable
         return $this->hasMany('App\Note');
     }
 
+    public function posts()
+    {
+        return $this->hasMany('App\Post');
+    }
+
+    public function comments()
+    {
+        return $this->hasMany('App\User');
+    }
+
     public function setPasswordAttribute($password)
     {
         $this->attributes['password'] = bcrypt($password);
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
