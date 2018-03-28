@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\IsUserLoggedIn;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,7 +14,7 @@
 
 Route::get('/', function () {
     return view('auth.login');
-});
+})->middleware(IsUserLoggedIn::Class);
 
 Auth::routes();
 
@@ -22,3 +23,4 @@ Route::resource('/{id}/notes', 'NotesController');
 Route::get('/{id}/profile', 'UserController@index');
 Route::post('/{id}/profile', 'UserController@editUser');
 Route::resource('/{id}/posts', 'PostsController');
+Route::resource('/{id}/comments', 'CommentsController');
