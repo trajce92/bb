@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use \App\Post;
 
 class PostsController extends Controller
 {
@@ -13,7 +14,7 @@ class PostsController extends Controller
      */
     public function index()
     {
-        //
+        
     }
 
     /**
@@ -32,9 +33,16 @@ class PostsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
-        //
+        $photoName = time().'.'.$request->image->getClientOriginalExtension();
+        $request->image->move(public_path('uploads'), $photoName);
+        $newPost = new Post;
+        $newPost->user_id = $id;
+        $newPost->title = $request['title'];
+        $newPost->image = $photoName;
+        $newPost->save();
+        return redirect('/home');
     }
 
     /**
