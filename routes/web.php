@@ -25,3 +25,7 @@ Route::post('/{id}/profile', 'UserController@editUser');
 Route::resource('/{id}/posts', 'PostsController');
 
 Route::resource('/{id}/comments', 'CommentsController');
+
+Route::get('/gmail', function(){
+	return view('quickstart');
+});
