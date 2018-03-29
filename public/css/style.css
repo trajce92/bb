@@ -9,8 +9,7 @@ html, body {
 
 /* login page start*/
 #left-column, #right-column{
-	max-height: 900px!important;
-	height: 770px!important;
+	height: 100vh!important;
 }
 #left-column {
 	background: #3f3f3f; /* Old browsers */
@@ -100,3 +99,27 @@ html, body {
 	height: 650px;
 }
 /* login page end */
+
+/* home page start */
+
+.row.no-gutters {
+   margin-right: 0;
+   margin-left: 0;
+}
+.row.no-gutters > [class^="col-"],
+.row.no-gutters > [class*=" col-"] {
+   padding-right: 0;
+   padding-left: 0;
+}
+
+#home-page{
+	padding: 2% 4%;
+	background: rgba(242, 247, 245, .9);
+}
+
+a, .btn-link{
+	color: #1c6d4e!important;
+}
+/* homepage  end */
+
+

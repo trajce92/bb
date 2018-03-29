@@ -14,7 +14,7 @@ use App\Http\Middleware\IsUserLoggedIn;
 
 Route::get('/', function () {
     return view('auth.login');
-})->middleware(IsUserLoggedIn::Class);
+});
 
 Auth::routes();
 
