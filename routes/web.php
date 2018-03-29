@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Middleware\IsUserLoggedIn;
 /*
 |--------------------------------------------------------------------------
 | Web Routes

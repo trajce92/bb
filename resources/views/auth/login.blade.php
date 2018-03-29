@@ -30,9 +30,8 @@
                         <img src="{{ asset('images/logo.png') }}" alt="Builder-Buddies-Logo">
                     </div>
                     <form method="POST" action="{{ route('login') }}" id="login-form">
-                        @csrf
+                        {{csrf_field()}}
                         <div class="form-group">
-
                             <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus placeholder="&#xf0e0;&nbsp; Email">
                             @if ($errors->has('email'))
                                 <span class="invalid-feedback">
@@ -57,6 +56,7 @@
                                 <a href="{{ route('password.request') }}">
                                     Forgot Password?
                                 </a>
+                                <input type="checkbox" name="remember" checked="">
                             </p>
                         </div>
                     </form>
