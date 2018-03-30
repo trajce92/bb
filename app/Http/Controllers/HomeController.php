@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use \App\Post;
+use \App\User;
 
 class HomeController extends Controller
 {
@@ -27,6 +28,7 @@ class HomeController extends Controller
     {
         $id = Auth::user()->id;
         $data = Post::where('user_id', $id)->get();
-        return view('home', compact('data'));
+        $users = User::all();
+        return view('home', compact('data', 'users'));
     }
 }

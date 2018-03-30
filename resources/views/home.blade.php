@@ -26,7 +26,9 @@
                         <select class="form-control">
                           <option>Default select</option>
                         </select>
-
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createModal">
+                          +
+                        </button>
                         <div id="accordion">
                           <div class="card">
                             <div class="card-header" id="headingOne">
@@ -123,6 +125,26 @@
             </div>
         </div>
     </div>
+    <div class="row">
+      <div class="col-md-8">
+        <div class="row">
+          <div class="col-md-1">
+            <img src="http://via.placeholder.com/50x50" alt="">
+            <button data-target="modalnekoj">+</button>
+          </div>
+          <div class="col-md-7">
+            title
+            <img src="" alt="">
+          </div>
+          <div class="col-md-4">
+            <!-- za komentari -->
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        
+      </div>
+    </div>
     <div class="row no-gutters justify-content-center">
         <div class="col-md-12">
             <div >
@@ -152,11 +174,46 @@
                             <input type="text" name="comments" id="comments-input-{{$post->id}}">
                             <button name="send-comment" class="send-btn" data="{{$post->id}}">send</button>                        
                         @endforeach
-                        <input type="hidden" name="hidden" value="{{Auth::user()->id}}" id="hidden-comment">
-                        
+                        <input type="hidden" name="hidden" value="{{Auth::user()->id}}" id="hidden-comment">                        
                     </div>
                 </div>
             </div>
+        </div>
+        <!-- Modal -->
+        <div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="createModal">Create Project</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form method="post" action="{{url('/'.Auth::user()->id.'/projects')}}">
+                  {{ csrf_field() }}
+                    <div class="form-group">
+                      <input name="title" type="text" class="form-control" id="ProjectTitle" placeholder="Project Title">
+                    </div>
+                    <div class="form-group">
+                      <select name="owner_id" class="form-control">
+                        @foreach($users as $user)
+                        <option>{{$user->name}}</option>
+                        @endforeach
+                      </select>
+                    </div>
+                    <div>
+                      icons
+                    </div>
+                    <button type="submit" class="hidden" id="submitCreateProject"></button>
+                  </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <label for="submitCreateProject" class="btn btn-primary">Create</label>
+              </div>
+            </div>
+          </div>
         </div>
     </div>
 </div>
