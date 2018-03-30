@@ -94,6 +94,7 @@
                                         <td>Title</td>
                                         <td>hour</td>
                                     </tr>
+                                    @include('quickstart');
                                 </tbody>
                             </table>
                       </div>

@@ -1,17 +1,16 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
   <head>
     <title>Gmail API Quickstart</title>
     <meta charset='utf-8' />
   </head>
-  <body>
-    <p>Gmail API Quickstart</p>
+  <body> -->
 
     <!--Add buttons to initiate auth sequence and sign out-->
-    <button id="authorize-button" style="display: none;">Authorize</button>
-    <button id="signout-button" style="display: none;">Sign Out</button>
+    {{-- <button id="authorize-button" style="display: none;">Authorize</button> --}}
+    {{-- <button id="signout-button" style="display: none;">Sign Out</button> --}}
 
-    <pre id="content"></pre>
+    <pre id="gmail_content"></pre>
 
     <script type="text/javascript">
       // Client ID and API key from the Developer Console
@@ -23,10 +22,11 @@
 
       // Authorization scopes required by the API; multiple scopes can be
       // included, separated by spaces.
-      var SCOPES = 'https://www.googleapis.com/auth/gmail.readonly';
+      // var SCOPES = 'https://www.googleapis.com/auth/gmail.readonly';
+      var SCOPES = 'https://mail.google.com/';
 
-      var authorizeButton = document.getElementById('authorize-button');
-      var signoutButton = document.getElementById('signout-button');
+      // var authorizeButton = document.getElementById('authorize-button');
+      // var signoutButton = document.getElementById('signout-button');
 
       /**
        *  On load, called to load the auth2 library and API client library.
@@ -51,8 +51,8 @@
 
           // Handle the initial sign-in state.
           updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
-          authorizeButton.onclick = handleAuthClick;
-          signoutButton.onclick = handleSignoutClick;
+          // authorizeButton.onclick = handleAuthClick;
+          // signoutButton.onclick = handleSignoutClick;
         });
       }
 
@@ -62,13 +62,13 @@
        */
       function updateSigninStatus(isSignedIn) {
         if (isSignedIn) {
-          console.log("went in"); 
-          authorizeButton.style.display = 'none';
-          signoutButton.style.display = 'block';
-          listLabels();
+          // authorizeButton.style.display = 'none';
+          // signoutButton.style.display = 'block';
+          // listLabels();
+          listMessages('me', '', listMessagesCallback);
         } else {
-          authorizeButton.style.display = 'block';
-          signoutButton.style.display = 'none';
+          // authorizeButton.style.display = 'block';
+          // signoutButton.style.display = 'none';
         }
       }
 
@@ -93,9 +93,13 @@
        * @param {string} message Text to be placed in pre element.
        */
       function appendPre(message) {
-        var pre = document.getElementById('content');
+        var pre = document.getElementById('gmail_content');
         var textContent = document.createTextNode(message + '\n');
-        pre.appendChild(textContent);
+        var messageLink = document.createElement('a');
+        messageLink.title = "my title text";
+        messageLink.href = "http://example.com";
+        messageLink.appendChild(textContent);
+        pre.appendChild(messageLink);
       }
 
       /**
@@ -114,7 +118,6 @@
               var label = labels[i];
               appendPre(label.name)
             }
-            listMessages('me', '', listMessagesCallback);
           } else {
             appendPre('No Labels found.');
           }
@@ -155,9 +158,10 @@
       }
       function listMessagesCallback(result){
         // console.log(result);
+        result.length = 10;
         result.forEach(function(item, index){
-          // console.log(index + ": " + item.id);
-          getMessage('me', item.id, getMessageCallback);
+          // console.log(index + ": " + item.snippet);
+          getMessage('me', item.id);
         });
       }
 
@@ -172,17 +176,29 @@
       function getMessage(userId, messageId, callback) {
         var request = gapi.client.gmail.users.messages.get({
           'userId': userId,
-          'id': messageId
+          'id': messageId,
         });
-        // console.log(request);
         request.execute(function(resp) {
-            // result = result.concat(resp.messages);
-            console.log(resp);
+            // make element for each email
+            if(resp.payload.parts){
+              // if message is multipart, traverse through all parts
+              resp.payload.parts.forEach(function(item, index){
+                // item.
+              });
+            }
+            else{
+              // else print message
+              if(resp.payload.body.attachmentId){
+                // data in attachment, get with messages.attachments.get request
+              }
+              else{
+                var decodedPart = decodeURIComponent(escape(atob(resp.payload.body.data.replace(/\-/g, '+').replace(/\_/g, '/'))));
+                // console.log(decodedPart);
+                // appendPre(decodedPart);
+                appendPre(resp.snippet);
+              }
+            }
           });
-      }
-      function getMessageCallback(){
-        console.log(this.request);
-        // console.log
       }
 
 
@@ -194,5 +210,5 @@
       onload="this.onload=function(){};handleClientLoad()"
       onreadystatechange="if (this.readyState === 'complete') this.onload()">
     </script>
-  </body>
-</html>
+<!--   </body>
+</html> -->
