@@ -16,6 +16,9 @@
         <!-- Bootstrap js -->
         <script type="text/javascript" src="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script>
 
+        <!-- for testing of Memory Kit chat. to be deleted afterwards. Replace REACT_APP_URL with the actual value of REACT_APP_URL from the memory-kit project layout_react/.env file, then open this page of bb. change of bot.css in memory-kit will reflect here -->
+        <script src="REACT_APP_URLjs/embedbot.js" defer="defer"></script>
+
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
