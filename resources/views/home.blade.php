@@ -216,6 +216,29 @@
             </div>
           </div>
         </div>
+        <!-- Learn something new -->
+        <div id="share-links">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="input-group">               
+                <input type="text" class="form-control" placeholder="Search for...">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="input-group">
+                <input type="url" class="input-link" placeholder="Share your link...">
+                <span class="input-group-btn">
+                  <button class="btn btn-default share-link" type="button">Share</button>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <ul class="list-group col-md-12 shared_link">
+            </ul>  
+        </div>
     </div>
 </div>
 <script
@@ -244,7 +267,21 @@
                 $('#comments-field-' + data.post_id).text(data.content);
                 $('#comments-input-' + post_id).val('');
             });
-        })
+        });
+        $('.share-link').on('click', function(){
+          var user = $('#hidden-comment').val();
+          $.ajax({
+            url: document.location.href.slice(0, -5) + '/' + user + '/links',
+            type: 'post',
+            data : {
+                _text: $('.input-link').val()
+            }
+          }).done(function(data){
+            var link = $('.input-link').val();
+            $('.shared_link').prepend('<span>' + user + '</span>' + '<li class=";ist-group-item">' + '<a href="' + link +  '" target="_blank" >' + link + '</a></li>');
+            $('.input-link').val('');
+          })
+        });
         
 
     });
